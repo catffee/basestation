@@ -1,0 +1,17 @@
+{
+    "pages": [
+        
+        "pages/index/index",
+        "pages/end/end",
+        "pages/game/game"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#aaa",
+        "navigationBarTitleText": "博饼",
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}
