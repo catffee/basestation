@@ -1,0 +1,116 @@
+<!--pages/game/game.wxml-->
+<view class="container">
+<image src="../../media/public/background.png" id="background"></image>
+
+<image src="../../media/game/bowl.png" id = "bowl"></image>
+
+<image src="../../media/public/rules.png" bindtap="onRules" id = "rules"></image>
+ <!--规则图片-->
+<image src="../../media/public/BoBingRule.png" bindtap="onRules1" style="display: {{ifShowRules}};" class="boBingRules"></image>
+
+<!-- 查看剩余奖品 -->
+<image src="../../media/game/prize1.png" bindtap="rewardButton1" style="display: {{ifShowRecord1}};" id="reward1"></image>
+<image src="../../media/game/prize2.png" bindtap="rewardButton2" style="display: {{ifShowRecord2}};" id="reward2"></image>
+
+
+<image src="../../media/public/setting.png" bindtap="onSetting" id = "setting"></image>
+
+<image src="../../media/game/back.png" bindtap="onReturn" id = "return"></image>
+
+<image src="../../media/game/dice.gif" id = "dice" style="display: {{ifShowDice}};"></image>
+<!-- 座位相关 -->
+<image src="../../media/game/joinSeat.png" style="display: {{ifShowSeat1}};" id = "seat1"></image>
+<image src="../../media/game/joinSeat.png" style="display: {{ifShowSeat2}};" id = "seat2"></image>
+<image src="../../media/game/joinSeat.png" style="display: {{ifShowSeat3}};" id = "seat3"></image>
+<image src="../../media/game/joinSeat.png" style="display: {{ifShowSeat4}};" id = "seat4"></image>
+<image src="../../media/game/joinSeat.png" style="display: {{ifShowSeat5}};" id = "seat5"></image>
+<image src="../../media/game/joinSeat.png" style="display: {{ifShowSeat6}};" id = "seat6"></image>
+<image src="../../media/game/joinSeat.png" style="display: {{ifShowSeat7}};" id = "seat7"></image>
+<image src="../../media/game/joinSeat.png" style="display: {{ifShowSeat8}};" id = "seat8"></image>
+<button bindtap="onuButton1" disabled="{{canNotChooseSeat}}" id="userButton1"></button>
+<button bindtap="onuButton2" disabled="{{canNotChooseSeat}}" id="userButton2"></button>
+<button bindtap="onuButton3" disabled="{{canNotChooseSeat}}" id="userButton3"></button>
+<button bindtap="onuButton4" disabled="{{canNotChooseSeat}}" id="userButton4"></button>
+<button bindtap="onuButton5" disabled="{{canNotChooseSeat}}" id="userButton5"></button>
+<button bindtap="onuButton6" disabled="{{canNotChooseSeat}}" id="userButton6"></button>
+<button bindtap="onuButton7" disabled="{{canNotChooseSeat}}" id="userButton7"></button>
+<button bindtap="onuButton8" disabled="{{canNotChooseSeat}}" id="userButton8"></button>
+<image src="../../media/{{folderName}}/{{userIconName[0]}}.png" style="display: {{ifShowUse1}};" id = "user1"></image>
+<image src="../../media/{{folderName}}/{{userIconName[1]}}.png" style="display: {{ifShowUse2}};" id = "user2"></image>
+<image src="../../media/{{folderName}}/{{userIconName[2]}}.png" style="display: {{ifShowUse3}};" id = "user3"></image>
+<image src="../../media/{{folderName}}/{{userIconName[3]}}.png" style="display: {{ifShowUse4}};" id = "user4"></image>
+<image src="../../media/{{folderName}}/{{userIconName[4]}}.png" style="display: {{ifShowUse5}};" id = "user5"></image>
+<image src="../../media/{{folderName}}/{{userIconName[5]}}.png" style="display: {{ifShowUse6}};" id = "user6"></image>
+<image src="../../media/{{folderName}}/{{userIconName[6]}}.png" style="display: {{ifShowUse7}};" id = "user7"></image>
+<image src="../../media/{{folderName}}/{{userIconName[7]}}.png" style="display: {{ifShowUse8}};" id = "user8"></image>
+<text style="display: {{ifShowUse1}};" id="wordSeat1">座位1</text>
+<text style="display: {{ifShowUse6}};" id="wordSeat6">座位2</text>
+<text style="display: {{ifShowUse4}};" id="wordSeat4">座位3</text>
+<text style="display: {{ifShowUse8}};" id="wordSeat8">座位4</text>
+<text style="display: {{ifShowUse2}};" id="wordSeat2">座位5</text>
+<text style="display: {{ifShowUse7}};" id="wordSeat7">座位6</text>
+<text style="display: {{ifShowUse3}};" id="wordSeat3">座位7</text>
+<text style="display: {{ifShowUse5}};" id="wordSeat5">座位8</text>
+
+
+<button id = "startbutton" bindtap="startGame" style="display: {{ifShowStartButton}};">开始游戏</button>
+<button id = "BoBingbutton" bindtap="BoBing" disabled="{{ifNotUseButton}}">博饼</button>
+<!-- 个人玩家奖品界面 -->
+<view id="recordPanel" style="display: {{ifShowRecord}};">
+  <image src="../../media/playerIcon/icon{{playerShow.player_index+1}}.png" class="userIcon"></image>
+  <text class="userID">{{playerShow.player_ID}}</text>
+  <view class="userMaxDice">
+    <image src="../../media/dice/{{playerShow.player_lastChampion[0]}}.png" class="userEachDice"></image>
+    <image src="../../media/dice/{{playerShow.player_lastChampion[1]}}.png" class="userEachDice"></image>
+    <image src="../../media/dice/{{playerShow.player_lastChampion[2]}}.png" class="userEachDice"></image>
+    <image src="../../media/dice/{{playerShow.player_lastChampion[3]}}.png" class="userEachDice"></image>
+    <image src="../../media/dice/{{playerShow.player_lastChampion[4]}}.png" class="userEachDice"></image>
+    <image src="../../media/dice/{{playerShow.player_lastChampion[5]}}.png" class="userEachDice"></image>
+  </view>
+  <view class="maxPrizeName"><text>{{maxChampion_name}}</text></view>
+  <view class="prizeList">
+    <text>
+    对堂:{{playerShow.player_prize_counter[4]}}
+    三红:{{playerShow.player_prize_counter[3]}},四进:{{playerShow.player_prize_counter[2]}}
+    二举:{{playerShow.player_prize_counter[1]}},一秀:{{playerShow.player_prize_counter[0]}}
+    </text>
+  </view>
+<!-- 奖品文字 -->
+</view>
+  <view style="position: absolute;">
+    <image src="../../media/eachPrize/yiXiu.png" class="eachPrize" style="display: {{ifShowPrize[0]}};"></image>
+    <image src="../../media/eachPrize/erJu.png" class="eachPrize" style="display: {{ifShowPrize[1]}};"></image>
+    <image src="../../media/eachPrize/siJin.png" class="eachPrize" style="display: {{ifShowPrize[2]}};"></image>
+    <image src="../../media/eachPrize/sanHong.png" class="eachPrize" style="display: {{ifShowPrize[3]}};"></image>
+    <image src="../../media/eachPrize/duiTang.png" class="eachPrize" style="display: {{ifShowPrize[4]}};"></image>
+    <image src="../../media/eachPrize/zhuangYuan.png" class="eachPrize" style="display: {{ifShowPrize[5]}};"></image>
+  </view>
+<!-- 中心骰子 -->
+  <view class="centerDice" style="display: {{ifShowCenterDice}};">
+    <image src="../../media/dice/{{nowDice[0]}}.png" class="centerEachDice"></image>
+    <image src="../../media/dice/{{nowDice[1]}}.png" class="centerEachDice"></image>
+    <image src="../../media/dice/{{nowDice[2]}}.png" class="centerEachDice"></image>
+    <image src="../../media/dice/{{nowDice[3]}}.png" class="centerEachDice"></image>
+    <image src="../../media/dice/{{nowDice[4]}}.png" class="centerEachDice"></image>
+    <image src="../../media/dice/{{nowDice[5]}}.png" class="centerEachDice"></image>
+  </view>
+  <!-- 侧面剩余奖品 -->
+  <view style="display: {{isShowRemain_prizes}};">
+    <text id="sidePrize">
+      对堂:{{remain_prizes[4]}}
+      三红:{{remain_prizes[3]}}
+      四进:{{remain_prizes[2]}}
+      二举:{{remain_prizes[1]}}
+      一秀:{{remain_prizes[0]}}
+    </text>
+  </view>
+<!-- 设置界面 -->
+  <view id="settingConfig" style="display: {{ifShowSetting}};">
+    <text class="settingText">博饼时震动</text>
+    <switch class="settingSwitch" bindchange="settingIfShock" checked="true"></switch>
+    <text>\n</text>
+    <text class="settingText">摇一摇博饼</text>
+    <switch class="settingSwitch" bindchange="settingIfShockToStart" checked="true"></switch>
+  </view>
+
+</view>

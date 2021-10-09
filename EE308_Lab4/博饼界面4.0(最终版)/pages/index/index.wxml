@@ -1,0 +1,39 @@
+<!--pages/index/index.wxml-->
+
+<view class="container"> 
+  <image src="../../media/public/background.png" id="background"></image>
+
+  <!--规则按钮-->
+  <button bindtap="onRules" id = "rulesbutton">
+    <image src="../../media/public/rules.png" id="rules"></image>
+  </button>
+    <!--规则图片-->
+    <image src="../../media/public/BoBingRule.png" style="display: {{ifShowRules}};" class="boBingRules"></image>
+
+  <!-- 设置按钮
+  <button bindtap="onSetting" id = "settingbutton">
+    <image src="../../media/public/setting.png" id="setting"></image>
+  </button> -->
+
+  <!--查看战绩-->
+  <button bindtap="onRecord" id = "recordbutton">
+    <image src="../../media/index/record.png" id="record">
+      <image src="../../media/index/ViewRecord.png" id="recordword"></image>
+    </image>
+  </button>
+
+  <!--添加-->
+  <button bindtap="onAdding" id = "addingbutton">
+    <image src="../../media/index/adding.png" id="adding">
+      <image src="../../media/index/joinDesk.png" id="addingword"></image>
+    </image>
+  </button>
+
+  <!--创建-->
+  <button bindtap="onEstablish" id = "establishbutton">
+    <image src="../../media/index/establish.png" id="establish">
+      <image src="../../media/index/createDesk.png" id="establishword"></image>
+    </image>
+  </button>
+
+</view>
